@@ -1,22 +1,15 @@
 const buttons = document.querySelectorAll(".inputButton");
 const display = document.querySelector(".display");
 const decimal = document.querySelector("#decimal");
-// const multiply = document.querySelector("#multiply");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equal");
 
-const numbers = {
-  firstNumber: [],
-  secondNumber: null,
-  functionButton: null,
-};
-
-const operationFunctions = ["+", "-", "*", "/", "DE", "AC", "="];
 let firstNumber = [];
 let secondNumber = [];
 let decimalValue = ".";
 let operatorValue = null;
 
+//check if decimal does not exist, if it does not then add decimal
 decimal.addEventListener("click", (e) => {
   if (!firstNumber.includes(e.target.innerText)) {
     firstNumber.push(e.target.innerText);
@@ -24,52 +17,34 @@ decimal.addEventListener("click", (e) => {
   }
 });
 
+//function for selecting numbers
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     let selectedNumValue = e.target.innerText;
-    // if operator is empty add selected numbers to first number
-    if (selectedNumValue) {
+    // if secondNumber is empty add to the first number
+    if (!secondNumber.length) {
       firstNumber.push(selectedNumValue);
     }
-
-    // if operator and first number
-    // if (operatorValue && firstNumber) {
-    //   secondNumber.push(selectedNumValue);
-    //   console.log(`logging  second number ${secondNumber}`);
-    // } else {
-    //   firstNumber.push(selectedNumValue);
-    //   console.log(`logging  first number ${firstNumber}`);
-    // }
-    // console.log(firstNumber);
     display.innerText = firstNumber;
   });
 });
 
-// multiply.addEventListener("click", (e) => {
-//   if (firstNumber.length) {
-//     operatorValue = e.target.innerText;
-//     console.log("ready");
-//   } else {
-//     console.log("not ready");
-//   }
-// });
-
+//operator function for + - / *
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
     let currentOperator = e.target.innerText;
+    //operator value does not get chosen until firstNumber value is true
     if (firstNumber.length) {
       operatorValue = currentOperator;
       console.log("first number chosen");
     }
-
-    // console.log(operator);
   });
 });
 
+//checks if equal sign was clicked
 equals.addEventListener("click", (e) => {
   if (e.target.innerText === "=") {
     operateOnArrays(firstNumber, secondNumber, operatorValue);
-    // console.log(operateOnArrays(firstNumber, secondNumber, operator));
   }
 });
 
