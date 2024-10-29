@@ -4,7 +4,7 @@ const eqDisplay = document.querySelector(".eq-display");
 const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equal");
-
+const clearButton = document.querySelector("#AC");
 let firstNumber = [];
 let secondNumber = [];
 let decimalValue = ".";
@@ -48,6 +48,13 @@ buttons.forEach((button) => {
 //   });
 // }
 
+clearButton.addEventListener("click", (e) => {
+  firstNumber = [];
+  secondNumber = [];
+  operatorValue = null;
+  eqDisplay.innerText = "";
+  valueDisplay.innerText = "";
+});
 //operator function for + - / *
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
@@ -75,17 +82,29 @@ function operateOnArrays(array1, array2, operator) {
   // Perform the operation based on the operator
   switch (operator) {
     case "+":
-      console.log(num1 + num2);
+      //   console.log(num1 + num2);
       eqDisplay.innerText = `${firstNumber.join(
         ""
       )} ${operatorValue}  ${secondNumber.join("")} =`;
       valueDisplay.innerText = `${num1 + num2}`;
     case "-":
-      return num1 - num2;
+      //   return num1 - num2;
+      eqDisplay.innerText = `${firstNumber.join(
+        ""
+      )} ${operatorValue}  ${secondNumber.join("")} =`;
+      valueDisplay.innerText = `${num1 - num2}`;
     case "*":
-      return num1 * num2;
+      //   return num1 * num2;
+      eqDisplay.innerText = `${firstNumber.join(
+        ""
+      )} ${operatorValue}  ${secondNumber.join("")} =`;
+      valueDisplay.innerText = `${num1 * num2}`;
     case "/":
-      return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+      //   return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+      eqDisplay.innerText = `${firstNumber.join(
+        ""
+      )} ${operatorValue}  ${secondNumber.join("")} =`;
+      valueDisplay.innerText = `${num1 / num2}`;
     default:
       return "Invalid operator";
   }
