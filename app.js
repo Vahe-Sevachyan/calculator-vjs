@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll(".inputButton");
-const display = document.querySelector(".display");
+const valueDisplay = document.querySelector(".value-display");
+const eqDisplay = document.querySelector(".eq-display");
 const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equal");
@@ -21,40 +22,31 @@ decimal.addEventListener("click", (e) => {
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     let selectedNumValue = e.target.innerText;
-
     if (operatorValue && firstNumber.length) {
       secondNumber.push(selectedNumValue);
       console.log("logging second number");
+      valueDisplay.innerText = `${firstNumber.join(
+        ""
+      )} ${operatorValue}  ${secondNumber.join("")}`;
     } else {
       firstNumber.push(selectedNumValue);
+      valueDisplay.innerText = firstNumber.join("");
       console.log("logging first number");
     }
-
-    // if (secondNumber.length == 0) {
-    //   firstNumber.push(selectedNumValue);
-    // } else if (!operatorValue === null && !firstNumber.length === 0) {
-    //   secondNumOperation();
-    // }
-    // if secondNumber is empty add to the first number
-
-    display.innerText = firstNumber;
-    // if (!secondNumber.length) {
-
-    // }
   });
 });
 
-function secondNumOperation() {
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      let selectedNumValue = e.target.innerText;
-      if (firstNumber && operatorValue) {
-        secondNumber.push(selectedNumValue);
-        console.log("adding to second number");
-      }
-    });
-  });
-}
+// function secondNumOperation() {
+//   buttons.forEach((button) => {
+//     button.addEventListener("click", (e) => {
+//       let selectedNumValue = e.target.innerText;
+//       if (firstNumber && operatorValue) {
+//         secondNumber.push(selectedNumValue);
+//         console.log("adding to second number");
+//       }
+//     });
+//   });
+// }
 
 //operator function for + - / *
 operators.forEach((operator) => {
@@ -63,7 +55,7 @@ operators.forEach((operator) => {
     //operator value does not get chosen until firstNumber value is true
     if (firstNumber.length) {
       operatorValue = currentOperator;
-      console.log("first number chosen");
+      valueDisplay.innerText = firstNumber.join("") + operatorValue;
     }
   });
 });
@@ -84,6 +76,10 @@ function operateOnArrays(array1, array2, operator) {
   switch (operator) {
     case "+":
       console.log(num1 + num2);
+      eqDisplay.innerText = `${firstNumber.join(
+        ""
+      )} ${operatorValue}  ${secondNumber.join("")} =`;
+      valueDisplay.innerText = `${num1 + num2}`;
     case "-":
       return num1 - num2;
     case "*":

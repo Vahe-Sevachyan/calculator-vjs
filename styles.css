@@ -41,7 +41,9 @@ div .display button {
   font-size: 45px;
   box-shadow: none;
 }
-
 #equal {
   width: 175px;
+}
+.eq-display {
+  border: 1px solid red;
 }
