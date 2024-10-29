@@ -21,13 +21,40 @@ decimal.addEventListener("click", (e) => {
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     let selectedNumValue = e.target.innerText;
-    // if secondNumber is empty add to the first number
-    if (!secondNumber.length) {
+
+    if (operatorValue && firstNumber.length) {
+      secondNumber.push(selectedNumValue);
+      console.log("logging second number");
+    } else {
       firstNumber.push(selectedNumValue);
+      console.log("logging first number");
     }
+
+    // if (secondNumber.length == 0) {
+    //   firstNumber.push(selectedNumValue);
+    // } else if (!operatorValue === null && !firstNumber.length === 0) {
+    //   secondNumOperation();
+    // }
+    // if secondNumber is empty add to the first number
+
     display.innerText = firstNumber;
+    // if (!secondNumber.length) {
+
+    // }
   });
 });
+
+function secondNumOperation() {
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      let selectedNumValue = e.target.innerText;
+      if (firstNumber && operatorValue) {
+        secondNumber.push(selectedNumValue);
+        console.log("adding to second number");
+      }
+    });
+  });
+}
 
 //operator function for + - / *
 operators.forEach((operator) => {
