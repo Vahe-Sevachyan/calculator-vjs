@@ -5,18 +5,36 @@ const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll(".operator");
 const equals = document.querySelector("#equal");
 const clearButton = document.querySelector("#AC");
+const deleteButton = document.querySelector("#DE");
 let firstNumber = [];
 let secondNumber = [];
 let decimalValue = ".";
 let operatorValue = null;
+let numOneActivated = false;
+let numTwoActivated = false;
 
-clearButton.addEventListener("click", (e) => {
+clearButton.addEventListener("click", () => {
   firstNumber = [];
   secondNumber = [];
   operatorValue = null;
   eqDisplay.innerText = "";
   valueDisplay.innerText = "";
 });
+
+deleteButton.addEventListener("click", () => {
+  if (numOneActivated === true) {
+    firstNumber.splice(-1);
+    valueDisplay.innerText = firstNumber.join("");
+    console.log(firstNumber);
+  } else if (numTwoActivated === true) {
+    secondNumber.splice(-1);
+    valueDisplay.innerText = `${firstNumber.join(
+      ""
+    )} ${operatorValue}  ${secondNumber.join("")}`;
+    console.log(secondNumber);
+  }
+});
+
 //check if decimal does not exist, if it does not then add decimal
 decimal.addEventListener("click", (e) => {
   if (!firstNumber.includes(e.target.innerText)) {
@@ -35,25 +53,18 @@ buttons.forEach((button) => {
       valueDisplay.innerText = `${firstNumber.join(
         ""
       )} ${operatorValue}  ${secondNumber.join("")}`;
+      numOneActivated = false;
+      numTwoActivated = true;
+      console.log(firstNumber);
     } else {
       firstNumber.push(selectedNumValue);
       valueDisplay.innerText = firstNumber.join("");
       console.log("logging first number");
+      numOneActivated = true;
+      numTwoActivated = false;
     }
   });
 });
-
-// function secondNumOperation() {
-//   buttons.forEach((button) => {
-//     button.addEventListener("click", (e) => {
-//       let selectedNumValue = e.target.innerText;
-//       if (firstNumber && operatorValue) {
-//         secondNumber.push(selectedNumValue);
-//         console.log("adding to second number");
-//       }
-//     });
-//   });
-// }
 
 //operator function for + - / *
 operators.forEach((operator) => {
@@ -101,26 +112,4 @@ function operateOnArrays(array1, array2, operator) {
     )} ${operatorValue}  ${secondNumber.join("")} =`;
     valueDisplay.innerText = `${num1 / num2}`;
   }
-
-  // Perform the operation based on the operator
-  //   switch (operator) {
-  //     case "+":
-  //       console.log(num1 + num2);
-  //       eqDisplay.innerText = `${firstNumber.join(
-  //         ""
-  //       )} ${operatorValue}  ${secondNumber.join("")} =`;
-  //       valueDisplay.innerText = `${num1 + num2}`;
-  //     case "-":
-  //       //   return num1 - num2;
-  //       eqDisplay.innerText = `${firstNumber.join(
-  //         ""
-  //       )} ${operatorValue}  ${secondNumber.join("")} =`;
-  //       valueDisplay.innerText = `${num1 - num2}`;
-  //     case "*":
-  //       return num1 * num2;
-  //     case "/":
-  //       return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
-  //     default:
-  //       return "Invalid operator";
-  //   }
 }
