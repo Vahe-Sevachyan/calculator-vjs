@@ -10,6 +10,13 @@ let secondNumber = [];
 let decimalValue = ".";
 let operatorValue = null;
 
+clearButton.addEventListener("click", (e) => {
+  firstNumber = [];
+  secondNumber = [];
+  operatorValue = null;
+  eqDisplay.innerText = "";
+  valueDisplay.innerText = "";
+});
 //check if decimal does not exist, if it does not then add decimal
 decimal.addEventListener("click", (e) => {
   if (!firstNumber.includes(e.target.innerText)) {
@@ -48,13 +55,6 @@ buttons.forEach((button) => {
 //   });
 // }
 
-clearButton.addEventListener("click", (e) => {
-  firstNumber = [];
-  secondNumber = [];
-  operatorValue = null;
-  eqDisplay.innerText = "";
-  valueDisplay.innerText = "";
-});
 //operator function for + - / *
 operators.forEach((operator) => {
   operator.addEventListener("click", (e) => {
@@ -79,33 +79,48 @@ function operateOnArrays(array1, array2, operator) {
   const num1 = Number(array1.join(""));
   const num2 = Number(array2.join(""));
 
-  // Perform the operation based on the operator
-  switch (operator) {
-    case "+":
-      //   console.log(num1 + num2);
-      eqDisplay.innerText = `${firstNumber.join(
-        ""
-      )} ${operatorValue}  ${secondNumber.join("")} =`;
-      valueDisplay.innerText = `${num1 + num2}`;
-    case "-":
-      //   return num1 - num2;
-      eqDisplay.innerText = `${firstNumber.join(
-        ""
-      )} ${operatorValue}  ${secondNumber.join("")} =`;
-      valueDisplay.innerText = `${num1 - num2}`;
-    case "*":
-      //   return num1 * num2;
-      eqDisplay.innerText = `${firstNumber.join(
-        ""
-      )} ${operatorValue}  ${secondNumber.join("")} =`;
-      valueDisplay.innerText = `${num1 * num2}`;
-    case "/":
-      //   return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
-      eqDisplay.innerText = `${firstNumber.join(
-        ""
-      )} ${operatorValue}  ${secondNumber.join("")} =`;
-      valueDisplay.innerText = `${num1 / num2}`;
-    default:
-      return "Invalid operator";
+  if (operator == "+") {
+    eqDisplay.innerText = `${firstNumber.join(
+      ""
+    )} ${operatorValue}  ${secondNumber.join("")} =`;
+    valueDisplay.innerText = `${num1 + num2}`;
+    console.log("works");
+  } else if (operator === "-") {
+    eqDisplay.innerText = `${firstNumber.join(
+      ""
+    )} ${operatorValue}  ${secondNumber.join("")} =`;
+    valueDisplay.innerText = `${num1 - num2}`;
+  } else if (operator === "*") {
+    eqDisplay.innerText = `${firstNumber.join(
+      ""
+    )} ${operatorValue}  ${secondNumber.join("")} =`;
+    valueDisplay.innerText = `${num1 * num2}`;
+  } else if (operator === "/") {
+    eqDisplay.innerText = `${firstNumber.join(
+      ""
+    )} ${operatorValue}  ${secondNumber.join("")} =`;
+    valueDisplay.innerText = `${num1 / num2}`;
   }
+
+  // Perform the operation based on the operator
+  //   switch (operator) {
+  //     case "+":
+  //       console.log(num1 + num2);
+  //       eqDisplay.innerText = `${firstNumber.join(
+  //         ""
+  //       )} ${operatorValue}  ${secondNumber.join("")} =`;
+  //       valueDisplay.innerText = `${num1 + num2}`;
+  //     case "-":
+  //       //   return num1 - num2;
+  //       eqDisplay.innerText = `${firstNumber.join(
+  //         ""
+  //       )} ${operatorValue}  ${secondNumber.join("")} =`;
+  //       valueDisplay.innerText = `${num1 - num2}`;
+  //     case "*":
+  //       return num1 * num2;
+  //     case "/":
+  //       return num2 !== 0 ? num1 / num2 : "Cannot divide by zero";
+  //     default:
+  //       return "Invalid operator";
+  //   }
 }
