@@ -52,7 +52,7 @@ buttons.forEach((button) => {
       console.log("logging second number");
       valueDisplay.innerText = `${firstNumber.join(
         ""
-      )} ${operatorValue}  ${secondNumber.join("")}`;
+      )} ${operatorValue}   ${secondNumber.join("")}`;
       numOneActivated = false;
       numTwoActivated = true;
       console.log(firstNumber);
@@ -73,7 +73,7 @@ operators.forEach((operator) => {
     //operator value does not get chosen until firstNumber value is true
     if (firstNumber.length) {
       operatorValue = currentOperator;
-      valueDisplay.innerText = firstNumber.join("") + operatorValue;
+      valueDisplay.innerText = `${firstNumber.join("")}   ${operatorValue}`;
     }
   });
 });
